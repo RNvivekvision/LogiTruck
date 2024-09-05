@@ -1,3 +1,4 @@
 import Login from './Login';
 import Otp from './Otp';
-export { Login, Otp };
+import RegistrationType from './RegistrationType';
+export { Login, Otp, RegistrationType };

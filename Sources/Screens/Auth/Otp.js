@@ -12,6 +12,7 @@ import { Images } from '../../Constants';
 import { Functions } from '../../Utils';
 import { Colors, FontFamily, FontSize, hp, wp } from '../../Theme';
 import { OtpInput } from 'react-native-otp-entry';
+import { NavRoutes } from '../../Navigation';
 
 export default function Otp({ navigation, route }) {
   const otpRef = useRef();
@@ -40,7 +41,7 @@ export default function Otp({ navigation, route }) {
     try {
       await Functions.wait(2000);
       setState(p => ({ ...p, isLoading: false }));
-      Functions.Toast.success(State.otp);
+      navigation.navigate(NavRoutes.RegistrationType);
     } catch (e) {
       console.log('Error onLoginPress -> ', e);
     } finally {
@@ -51,7 +52,7 @@ export default function Otp({ navigation, route }) {
   return (
     <RNContainer isLoading={State.isLoading}>
       <RNScrollView>
-        <RNImage source={Images.login} style={styles.image} />
+        <RNImage source={Images.otp} style={styles.image} />
 
         <RNText style={styles.title}>{'OTP Verification'}</RNText>
         <View style={RNStyles.flexRow}>

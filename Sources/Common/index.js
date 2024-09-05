@@ -11,6 +11,7 @@ export { default as RNScrollView } from './RNScrollView';
 export { default as RNContainer } from './RNContainer';
 export { default as RNClose } from './RNClose';
 export { default as RNPlus } from './RNPlus';
+export { default as RNRadio } from './RNRadio';
 export { default as RNInput } from './RNInput';
 export { default as RNStyles } from './RNStyles';
 // export { default as RNCalendar } from './RNCalendar';

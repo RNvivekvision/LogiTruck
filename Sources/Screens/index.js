@@ -1,2 +1,2 @@
-export { Login, Otp } from './Auth';
-export {} from './App';
+export { Login, Otp, RegistrationType } from './Auth';
+export { Home } from './App';
