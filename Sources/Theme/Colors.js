@@ -6,6 +6,8 @@ const Colors = {
   placeholder: '#D3D3D3',
   error: '#FF1717',
   grey: '#757575',
+  border: '#CDCDCD',
+  decline: '#FF7456',
 };
 
 export default Colors;

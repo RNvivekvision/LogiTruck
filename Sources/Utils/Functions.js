@@ -59,6 +59,15 @@ const Toast = {
   message: m => toast(m, { id: 'message' }),
 };
 
+const formatNumber = num => {
+  const [integerPart, decimalPart] = num.toString().split('.');
+  let formatted = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Add commas for thousands
+  if (decimalPart) {
+    formatted += '.' + decimalPart;
+  }
+  return formatted;
+};
+
 const Functions = {
   requestTimeout,
   ALERT,
@@ -67,6 +76,7 @@ const Functions = {
   getAppData,
   wait,
   formatDate,
+  formatNumber,
   handleResponse,
   Toast,
 };

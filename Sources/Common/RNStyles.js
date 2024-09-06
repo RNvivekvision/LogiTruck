@@ -80,10 +80,10 @@ const RNStyles = StyleSheet.create({
   shadow: {
     shadowOffset: {
       width: 0,
-      height: 5,
+      height: 2,
     },
     shadowColor: Colors.black,
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.15,
     shadowRadius: 6,
     elevation: 7,
   },

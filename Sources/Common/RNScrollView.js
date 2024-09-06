@@ -7,8 +7,9 @@ import { hp } from '../Theme';
 const RNScrollView = ({
   style,
   safeArea = 'bottom',
-  children,
   scrollProps,
+  onScroll,
+  children,
 }) => {
   const styles = useStyles();
   const scrollStyles = {
@@ -28,6 +29,7 @@ const RNScrollView = ({
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         keyboardShouldPersistTaps={'handled'}
+        onScroll={onScroll}
         {...scrollProps}>
         <View style={[RNStyles.container, style]}>{children}</View>
       </ScrollView>

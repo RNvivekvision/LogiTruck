@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { StatusBar, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RNIcon, RNStyles, RNText, RNScrollView } from './index';
 import { useInset } from '../Hooks';
@@ -27,11 +27,13 @@ const RNHeader = ({
 
   return (
     <View style={RNStyles.container}>
-      <View style={[styles.Container, containerStyle]}>
+      <StatusBar barStyle={'light-content'} />
+      <View style={[styles.container, containerStyle]}>
         <RNIcon
           icon={back ? Images.back : Images.drawer}
           onPress={onBack ? onBack : onBackPress}
           containerStyle={styles.icon}
+          iconStyle={{ tintColor: Colors.white }}
         />
         <RNText style={[styles.title, titleStyle]}>{title}</RNText>
         {right ? (
@@ -58,18 +60,19 @@ const useStyles = () => {
   const inset = useInset();
 
   return StyleSheet.create({
-    Container: {
+    container: {
       ...RNStyles.flexRowBetween,
       paddingHorizontal: wp(4),
       paddingTop: inset.top + hp(2),
-      paddingVertical: hp(2),
+      paddingVertical: hp(1.5),
+      backgroundColor: Colors.primary,
     },
     icon: {
       ...RNStyles.center,
       width: size.iconContainer,
       height: size.iconContainer,
       borderRadius: wp(2),
-      backgroundColor: Colors.primary + '10',
+      backgroundColor: Colors.white + '20',
     },
     title: {
       flex: 1,
@@ -78,6 +81,7 @@ const useStyles = () => {
       fontSize: FontSize.font18,
       fontFamily: FontFamily.SemiBold,
       textAlign: 'center',
+      color: Colors.white,
     },
     footer: {
       paddingBottom: inset.bottom,

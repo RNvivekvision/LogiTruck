@@ -5,7 +5,17 @@ const NavRoutes = {
   RegistrationType: 'Registration Type',
 
   // App...
+  Drawer: 'Drawer',
+  BottomTabs: 'BottomTabs',
   Home: 'Home',
+  Bid: 'Bid',
+  Active: 'Active',
+  Reoffer: 'Reoffer',
+  Win: 'Win',
+  Lose: 'Lose',
+
+  Orders: 'Orders',
+  Setting: 'Setting',
 };
 
 export default NavRoutes;

@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Home, Wardrobe, OOTD } from '../../Screens';
+import { Home, Bid, Orders, Setting } from '../../Screens';
 import NavRoutes from '../NavRoutes';
 import NavConfigs from '../NavConfigs';
 import TabBar from './TabBar';
@@ -11,9 +11,10 @@ export default function Tabs() {
     <Tab.Navigator
       screenOptions={NavConfigs.screenOptions}
       tabBar={p => <TabBar {...p} />}>
-      <Tab.Screen name={NavRoutes.Tabs} component={Home} />
-      <Tab.Screen name={NavRoutes.Wardrobe} component={Wardrobe} />
-      <Tab.Screen name={NavRoutes.OOTD} component={OOTD} />
+      <Tab.Screen name={NavRoutes.BottomTabs} component={Home} />
+      <Tab.Screen name={NavRoutes.Bid} component={Bid} />
+      <Tab.Screen name={NavRoutes.Orders} component={Orders} />
+      <Tab.Screen name={NavRoutes.Setting} component={Setting} />
     </Tab.Navigator>
   );
 }
