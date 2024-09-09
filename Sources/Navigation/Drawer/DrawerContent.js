@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { RNImage, RNStyles, RNText } from '../../Common';
+import { RNButton, RNImage, RNStyles, RNText } from '../../Common';
 import { useInset } from '../../Hooks';
 import { Colors, FontFamily, FontSize, hp, wp } from '../../Theme';
 import { Images } from '../../Constants';
@@ -14,9 +14,7 @@ export default function DrawerContent({ navigation }) {
 
   return (
     <View style={RNStyles.container}>
-      <View style={styles.titleContainer}>
-        {/* <RNText style={styles.title}>{'LogiTruck'}</RNText> */}
-      </View>
+      <View style={styles.logoBg} />
 
       <View style={RNStyles.container}>
         <View style={styles.logo}>
@@ -30,7 +28,7 @@ export default function DrawerContent({ navigation }) {
                 activeOpacity={0.6}
                 onPress={() => onPress(v)}
                 style={styles.renderDrawer}>
-                <RNImage source={v.icon} style={styles.icon} />
+                <RNImage source={Images['drawer_' + i]} style={styles.icon} />
                 <RNText
                   size={FontSize.font14}
                   family={FontFamily.SemiBold}
@@ -50,8 +48,8 @@ const size = { logo: wp(33), icon: wp(6) };
 const useStyles = () => {
   const inset = useInset();
   return StyleSheet.create({
-    titleContainer: {
-      height: hp(20),
+    logoBg: {
+      height: hp(18),
       paddingTop: inset.top + hp(2),
       backgroundColor: Colors.primary,
     },

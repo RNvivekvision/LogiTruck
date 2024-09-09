@@ -4,11 +4,17 @@ import { useState } from 'react';
 import { DummyData, Functions } from '../../Utils';
 import { Colors } from '../../Theme';
 import { LOBid } from '../../Components';
+import { NavRoutes } from '../../Navigation';
 
 const { dummyBid } = DummyData.bid;
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [State, setState] = useState({ refresh: false });
+
+  const onAddBid = item => {
+    console.log('item -> ', JSON.stringify(item, null, 2));
+    navigation.navigate(NavRoutes.AddBid, { item });
+  };
 
   const onRefresh = async () => {
     setState(p => ({ ...p, refresh: true }));
@@ -18,7 +24,7 @@ export default function Home() {
 
   return (
     <RNContainer>
-      <RNHeader title={'Home'} back={false} noScroll>
+      <RNHeader title={'Home'} back={false} noScroll isHome>
         <FlatList
           data={Array.from({ length: 20 }).map((_, i) => dummyBid)}
           keyExtractor={(v, i) => String(i)}
@@ -30,7 +36,7 @@ export default function Home() {
             />
           }
           contentContainerStyle={{ paddingVertical: 10 }}
-          renderItem={({ item }) => <LOBid item={item} />}
+          renderItem={({ item }) => <LOBid item={item} onAddBid={onAddBid} />}
         />
       </RNHeader>
     </RNContainer>

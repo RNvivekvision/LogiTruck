@@ -1,6 +1,6 @@
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { RNIcon, RNStyles, RNText, RNScrollView } from './index';
+import { RNIcon, RNStyles, RNText, RNScrollView, RNImage } from './index';
 import { useInset } from '../Hooks';
 import { Colors, FontFamily, FontSize, hp, wp } from '../Theme';
 import { Images } from '../Constants';
@@ -17,12 +17,26 @@ const RNHeader = ({
   back = true,
   onBack,
   right,
+  isHome,
 }) => {
   const navigation = useNavigation();
   const styles = useStyles();
 
   const onBackPress = async () => {
     back ? navigation.goBack() : navigation.openDrawer();
+  };
+
+  const onProfilePress = () => {};
+
+  const Profile = () => {
+    return (
+      <TouchableOpacity
+        activeOpacity={0.6}
+        onPress={onProfilePress}
+        style={styles.profileContainer}>
+        <RNImage source={Images.dummyUser} resizeMode={'cover'} />
+      </TouchableOpacity>
+    );
   };
 
   return (
@@ -36,8 +50,12 @@ const RNHeader = ({
           iconStyle={{ tintColor: Colors.white }}
         />
         <RNText style={[styles.title, titleStyle]}>{title}</RNText>
-        {right ? (
-          right
+        {right || isHome ? (
+          isHome ? (
+            <Profile />
+          ) : (
+            right
+          )
         ) : (
           <View
             style={[styles.icon, { backgroundColor: Colors.transparent }]}
@@ -64,13 +82,13 @@ const useStyles = () => {
       ...RNStyles.flexRowBetween,
       paddingHorizontal: wp(4),
       paddingTop: inset.top + hp(2),
-      paddingVertical: hp(1.5),
+      paddingVertical: hp(2),
       backgroundColor: Colors.primary,
     },
     icon: {
       ...RNStyles.center,
-      width: size.iconContainer,
-      height: size.iconContainer,
+      width: size.icon,
+      height: size.icon,
       borderRadius: wp(2),
       backgroundColor: Colors.white + '20',
     },
@@ -86,9 +104,18 @@ const useStyles = () => {
     footer: {
       paddingBottom: inset.bottom,
     },
+    profileContainer: {
+      width: size.icon * 1,
+      height: size.icon * 1,
+      borderRadius: 100,
+      overflow: 'hidden',
+      borderWidth: wp(0.1),
+      borderColor: Colors.white,
+      backgroundColor: Colors.white + '20',
+    },
   });
 };
 
-const size = { icon: wp(4), iconContainer: wp(10) };
+const size = { icon: wp(8) };
 
 export default RNHeader;

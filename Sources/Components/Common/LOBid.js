@@ -1,12 +1,12 @@
 import { StyleSheet, View } from 'react-native';
-import { RNImage, RNStyles, RNText } from '../../Common';
+import { RNButton, RNImage, RNStyles, RNText } from '../../Common';
 import { Colors, FontFamily, FontSize, hp, wp } from '../../Theme';
 import { Images } from '../../Constants';
 import { Functions } from '../../Utils';
 
-export default function LOBid({ item, children }) {
+export default function LOBid({ children, item, onAddBid, containerStyle }) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <View style={styles.contentContainer}>
         <RNImage source={Images.dummyTruck} style={styles.img} />
         <View style={styles.content}>
@@ -21,18 +21,25 @@ export default function LOBid({ item, children }) {
       </View>
 
       <View style={styles.locationContainer}>
-        <View style={RNStyles.flexRow}>
-          <RNImage source={Images.location} style={styles.icon} />
-          <RNText pLeft={wp(2)} size={FontSize.font12}>
-            {'Current location'}
-          </RNText>
-        </View>
-
-        <View style={styles.priceContainer}>
-          <RNText style={styles.bold}>{item.location}</RNText>
-          <RNText style={styles.bold}>
-            {Functions.formatNumber(item.price)}
-          </RNText>
+        <View style={RNStyles.flexRowBetween}>
+          <View style={RNStyles.flexRow}>
+            <RNImage source={Images.location} style={styles.icon} />
+            <RNText style={styles.bold} pLeft={wp(2)}>
+              {item.location}
+            </RNText>
+          </View>
+          {onAddBid ? (
+            <RNButton
+              title={'+ Add Bid'}
+              onPress={() => onAddBid(item)}
+              style={styles.addBid}
+              textStyle={styles.addBidText}
+            />
+          ) : (
+            <RNText style={styles.bold}>
+              {Functions.formatNumber(item.price)}
+            </RNText>
+          )}
         </View>
       </View>
 
@@ -41,7 +48,7 @@ export default function LOBid({ item, children }) {
   );
 }
 
-const size = { img: wp(25), icon: wp(5) };
+const size = { img: wp(22), icon: wp(5) };
 const styles = StyleSheet.create({
   container: {
     ...RNStyles.shadow,
@@ -56,6 +63,8 @@ const styles = StyleSheet.create({
   img: {
     width: size.img,
     height: size.img,
+    borderRadius: wp(3),
+    overflow: 'hidden',
   },
   icon: {
     width: size.icon,
@@ -73,11 +82,11 @@ const styles = StyleSheet.create({
     paddingLeft: wp(4),
   },
   locationContainer: {
-    paddingVertical: hp(1),
+    paddingVertical: hp(2),
   },
   priceContainer: {
     ...RNStyles.flexRowBetween,
-    paddingVertical: hp(1),
+    paddingTop: hp(1),
   },
   childrenContainer: {
     paddingBottom: hp(2),
@@ -85,5 +94,15 @@ const styles = StyleSheet.create({
   bold: {
     fontSize: FontSize.font14,
     fontFamily: FontFamily.SemiBold,
+  },
+  addBid: {
+    width: wp(30),
+    marginHorizontal: 0,
+    marginVertical: 0,
+    paddingHorizontal: 0,
+    paddingVertical: hp(1.5),
+  },
+  addBidText: {
+    fontSize: FontSize.font12,
   },
 });

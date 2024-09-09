@@ -60,6 +60,7 @@ const Toast = {
 };
 
 const formatNumber = num => {
+  if (!num) return null;
   const [integerPart, decimalPart] = num.toString().split('.');
   let formatted = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // Add commas for thousands
   if (decimalPart) {

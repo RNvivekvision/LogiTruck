@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "refresh": "yarn install && yarn run podInstall && yarn run removeEnvLocal &&yarn run openXcode && yarn run androidClean",
+    "refresh": "yarn install && yarn run podInstall && yarn run removeEnvLocal && yarn run openXcode && yarn run androidClean",
     "android": "npx react-native run-android",
     "androidClean": "cd android && ./gradlew clean && cd ..",
     "androidUpdate": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && rm -rf ./android/app/src/main/res/drawable-* && rm -rf ./android/app/src/main/res/raw",
@@ -11,11 +11,11 @@
     "ios": "npx react-native run-ios",
     "iosUpdate": "npx react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
     "podInstall": "cd ios && pod install && cd ..",
-    "openXcode": "xed -b ios",
     "removeEnvLocal": "rm ./ios/.xcode.env.local",
+    "openXcode": "xed -b ios",
     "linkingFonts": "npx react-native-asset",
-    "lint": "eslint .",
     "start": "npx react-native start --reset-cache",
+    "lint": "eslint .",
     "test": "jest"
   },
   "dependencies": {

@@ -16,6 +16,7 @@ const NavRoutes = {
 
   Orders: 'Orders',
   Setting: 'Setting',
+  AddBid: 'Add Bid',
 };
 
 export default NavRoutes;
