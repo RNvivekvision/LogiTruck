@@ -7,9 +7,9 @@ import {
   RNRadio,
   RNStyles,
   RNText,
-} from '../../Common';
-import { FontSize, hp } from '../../Theme';
-import { LOBid, LOInput } from '../../Components';
+} from '../../../Common';
+import { FontSize, hp } from '../../../Theme';
+import { LOBid, LOInput } from '../../../Components';
 
 export default function AddBid({ route }) {
   const { item } = route.params;

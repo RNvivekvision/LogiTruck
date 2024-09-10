@@ -24,6 +24,9 @@ const Images = {
   drawer_7: require(imagePath + 'drawer_7' + png),
   drawer_8: require(imagePath + 'drawer_8' + png),
   drawer_9: require(imagePath + 'drawer_9' + png),
+  drawer_10: require(imagePath + 'drawer_10' + png),
+  camera: require(imagePath + 'camera' + png),
+  gallery: require(imagePath + 'gallery' + png),
 
   // Dummy images should be deleted....
   dummyTruck: require(imagePath + 'dummyTruck' + png),

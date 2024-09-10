@@ -4,6 +4,7 @@ import { RNIcon, RNStyles, RNText, RNScrollView, RNImage } from './index';
 import { useInset } from '../Hooks';
 import { Colors, FontFamily, FontSize, hp, wp } from '../Theme';
 import { Images } from '../Constants';
+import { NavRoutes } from '../Navigation';
 
 const RNHeader = ({
   title,
@@ -26,13 +27,11 @@ const RNHeader = ({
     back ? navigation.goBack() : navigation.openDrawer();
   };
 
-  const onProfilePress = () => {};
-
   const Profile = () => {
     return (
       <TouchableOpacity
         activeOpacity={0.6}
-        onPress={onProfilePress}
+        onPress={() => navigation.navigate(NavRoutes.Profile)}
         style={styles.profileContainer}>
         <RNImage source={Images.dummyUser} resizeMode={'cover'} />
       </TouchableOpacity>

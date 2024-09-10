@@ -1,16 +1,35 @@
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { RNButton, RNImage, RNStyles, RNText } from '../../Common';
-import { useInset } from '../../Hooks';
 import { Colors, FontFamily, FontSize, hp, wp } from '../../Theme';
+import { RNImage, RNStyles, RNText } from '../../Common';
+import { DummyData, Functions } from '../../Utils';
 import { Images } from '../../Constants';
-import { DummyData } from '../../Utils';
-
-const { drawer } = DummyData;
+import { useInset } from '../../Hooks';
 
 export default function DrawerContent({ navigation }) {
   const styles = useStyles();
 
-  const onPress = () => {};
+  const onPress = async v => {
+    navigation.closeDrawer();
+    await Functions.wait(100);
+
+    if (v?.nav) return navigation.navigate(v.nav);
+    if (v?.share) return await Functions.ShareApp();
+    if (v?.rate) return await Functions.RateUs();
+    if (v?.policy) return await Functions.OpenUrl(v.policy);
+    if (v?.logout)
+      return await Functions.ALERT({
+        title: 'Alert',
+        text: 'Are you sure you want to logout?',
+        buttons: [
+          { text: 'Yes', onPress: onLogout },
+          { text: 'No', style: 'destructive' },
+        ],
+      });
+  };
+
+  const onLogout = async () => {
+    console.log('Logout Pressed...');
+  };
 
   return (
     <View style={RNStyles.container}>
@@ -22,7 +41,7 @@ export default function DrawerContent({ navigation }) {
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.listContainer}>
-            {drawer.map((v, i) => (
+            {DummyData.drawer.map((v, i) => (
               <TouchableOpacity
                 key={i}
                 activeOpacity={0.6}

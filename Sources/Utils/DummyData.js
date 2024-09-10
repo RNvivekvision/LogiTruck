@@ -1,4 +1,4 @@
-import { Images } from '../Constants';
+import { NavRoutes } from '../Navigation';
 
 const DummyData = {
   bid: {
@@ -12,16 +12,17 @@ const DummyData = {
     },
   },
   drawer: [
-    { title: 'Vehical' },
-    { title: 'License' },
-    { title: 'Service' },
-    { title: 'Bank details' },
-    { title: 'Share App' },
-    { title: 'Rate Us' },
-    { title: 'About Us' },
-    { title: 'Contact Us' },
-    { title: 'Help & Feedback' },
-    { title: 'Privacy Policy' },
+    { title: 'Vehical', nav: NavRoutes.AddVehical },
+    { title: 'License', nav: NavRoutes.AddLicense },
+    { title: 'Service', nav: NavRoutes.AddService },
+    { title: 'Bank details', nav: NavRoutes.AddBankDetails },
+    { title: 'Share App', share: true },
+    { title: 'Rate Us', rate: true },
+    { title: 'About Us', nav: NavRoutes.AboutUs },
+    { title: 'Contact Us', nav: NavRoutes.ContactUs },
+    { title: 'Help & Feedback', nav: NavRoutes.HelpFeedback },
+    { title: 'Privacy Policy', policy: 'https://www.youtube.com/' },
+    { title: 'Logout', logout: true },
   ],
 };
 

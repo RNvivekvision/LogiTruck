@@ -105,6 +105,12 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def formattedDate = new Date().format('dd-MM-YYYY')
+            outputFileName = "LogiTruck_${formattedDate}.apk"
+        }
+    }
 }
 
 dependencies {

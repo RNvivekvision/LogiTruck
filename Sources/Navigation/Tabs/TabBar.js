@@ -3,17 +3,39 @@ import { Colors, FontFamily, FontSize, hp, wp } from '../../Theme';
 import { RNText, RNStyles } from '../../Common';
 import { Images } from '../../Constants';
 import { useInset } from '../../Hooks';
+import Reanimated, {
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
+const output = [wp(4), wp(29), wp(54), wp(79)];
 export default function TabBar({ state, descriptors, navigation }) {
   const styles = useStyles();
+  const currentIndex = useSharedValue(0);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    const inputRange = state.routes.map((v, i) => i);
+    const outputRange = state.routes.map((v, i) => output[i]);
+
+    const left = interpolate(currentIndex.value, inputRange, outputRange);
+
+    return {
+      left: left,
+    };
+  }, []);
 
   return (
     <View style={styles.container}>
+      <Reanimated.View style={[styles.overlay, animatedStyle]} />
+
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const isFocused = state.index === index;
 
         const onPress = () => {
+          currentIndex.value = withTiming(index);
           const event = navigation.emit({
             type: 'tabPress',
             target: route.key,
@@ -39,16 +61,7 @@ export default function TabBar({ state, descriptors, navigation }) {
         ];
 
         return (
-          <View
-            key={index}
-            style={[
-              styles.renderContainer,
-              {
-                backgroundColor: isFocused
-                  ? Colors.white + '20'
-                  : Colors.primary,
-              },
-            ]}>
+          <View key={index} style={[styles.renderContainer]}>
             <TouchableOpacity
               accessibilityRole={'button'}
               accessibilityState={isFocused ? { selected: true } : {}}
@@ -63,12 +76,14 @@ export default function TabBar({ state, descriptors, navigation }) {
                 resizeMode={'contain'}
                 style={[
                   styles.icons,
-                  { tintColor: isFocused ? Colors.white : Colors.black },
+                  {
+                    tintColor: isFocused ? Colors.white : Colors.white + '75',
+                  },
                 ]}
               />
               <RNText
                 style={styles.text}
-                color={isFocused ? Colors.white : Colors.black}>
+                color={isFocused ? Colors.white : Colors.white + '75'}>
                 {data[index].title}
               </RNText>
             </TouchableOpacity>
@@ -82,18 +97,27 @@ export default function TabBar({ state, descriptors, navigation }) {
 const size = { icon: wp(7) };
 const useStyles = () => {
   const inset = useInset();
+  const bottom = inset.bottom > 0 ? inset.bottom : hp(1);
   return StyleSheet.create({
+    overlay: {
+      backgroundColor: Colors.white + '30',
+      position: 'absolute',
+      width: size.icon * 2.4,
+      height: size.icon * 2.5,
+      zIndex: 1,
+      bottom: bottom + hp(0),
+      borderRadius: wp(2),
+    },
     container: {
       ...RNStyles.flexRowBetween,
       backgroundColor: Colors.primary,
       paddingVertical: hp(1),
-      paddingBottom: inset.bottom > 0 ? inset.bottom : hp(1),
+      paddingBottom: bottom,
     },
     renderContainer: {
       flex: 1,
       marginHorizontal: wp(4),
       paddingVertical: hp(1),
-      borderRadius: wp(2),
     },
     icons: {
       width: size.icon,
