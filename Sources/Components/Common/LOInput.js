@@ -1,11 +1,15 @@
 import React, { forwardRef } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { RNInput, RNStyles, RNText, RNIcon } from '../../Common';
+import { RNInput, RNStyles, RNText, RNIcon, RNImage } from '../../Common';
 import { Colors, FontSize, hp, wp } from '../../Theme';
+import DatePicker from 'react-native-date-picker';
+import { Functions } from '../../Utils';
+import { Images } from '../../Constants';
 
 const LOInput = (
   {
     title,
+    titleStyle,
     icon,
     text,
     textStyle,
@@ -16,13 +20,17 @@ const LOInput = (
     containerStyle,
     disable,
     country,
+    date,
+    open,
+    onDateChange,
+    toggleDatePicker,
     ...rest
   },
   ref,
 ) => {
   return (
     <View style={[styles.container, containerStyle]}>
-      {title && <RNText style={styles.title}>{title}</RNText>}
+      {title && <RNText style={[styles.title, titleStyle]}>{title}</RNText>}
       {text ? (
         <TouchableOpacity
           activeOpacity={0.6}
@@ -39,6 +47,17 @@ const LOInput = (
             editable={!disable}
             {...rest}
           />
+          {toggleDatePicker && (
+            <TouchableOpacity
+              activeOpacity={0.6}
+              onPress={toggleDatePicker}
+              style={styles.datePicker}>
+              <RNText style={styles.date}>
+                {Functions.formatDate({ date: date })}
+              </RNText>
+              <RNImage source={Images.calendar} style={styles.icon} />
+            </TouchableOpacity>
+          )}
           {icon && (
             <RNIcon
               icon={icon}
@@ -48,6 +67,19 @@ const LOInput = (
             />
           )}
         </View>
+      )}
+      {toggleDatePicker && (
+        <DatePicker
+          modal
+          open={open}
+          date={date || new Date()}
+          mode={'date'}
+          onConfirm={d => {
+            onDateChange?.(d);
+            toggleDatePicker();
+          }}
+          onCancel={toggleDatePicker}
+        />
       )}
       {error && <RNText style={styles.errorMsg}>{errorMsg}</RNText>}
     </View>
@@ -98,6 +130,21 @@ const styles = StyleSheet.create({
     fontSize: FontSize.font12,
     paddingTop: hp(1),
     color: Colors.error,
+  },
+  datePicker: {
+    width: '52%',
+    height: '100%',
+    borderLeftWidth: 1,
+    borderLeftColor: Colors.black + '20',
+    ...RNStyles.flexRowBetween,
+    paddingLeft: wp(4),
+  },
+  date: {
+    fontSize: FontSize.font12,
+  },
+  icon: {
+    width: wp(5),
+    height: wp(5),
   },
 });
 

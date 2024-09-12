@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { toast } from '@backpackapp-io/react-native-toast';
 import { Colors } from '../Theme';
 import Rate, { AndroidMarket } from 'react-native-rate';
+import ImageCropPicker from 'react-native-image-crop-picker';
 
 const requestTimeout = 30000;
 
@@ -38,7 +39,8 @@ const getAppData = async () => {
   return JSON.parse(value);
 };
 
-const formatDate = ({ date, format = 'DD-MM-YYYY' }) => {
+const formatDate = ({ date, format = 'DD/MM/YYYY' }) => {
+  if (!date) return null;
   const d = moment(date).format(format);
   return d;
 };
@@ -101,6 +103,23 @@ const ShareApp = async () => {
   await Share.share({ title: Title, message: Message, url: appLink });
 };
 
+const size = 800;
+const imageOptions = {
+  width: size,
+  height: size,
+  cropping: true,
+  mediaType: 'photo',
+  freeStyleCropEnabled: true,
+};
+const openGallery = async p => {
+  const img = await ImageCropPicker.openPicker({ ...imageOptions, ...p });
+  return img;
+};
+const openCamera = async p => {
+  const img = await ImageCropPicker.openCamera({ ...imageOptions, ...p });
+  return img;
+};
+
 const Functions = {
   requestTimeout,
   ALERT,
@@ -114,5 +133,7 @@ const Functions = {
   Toast,
   RateUs,
   ShareApp,
+  openGallery,
+  openCamera,
 };
 export default Functions;

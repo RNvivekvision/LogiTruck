@@ -3,7 +3,13 @@ import { Colors, FontSize, hp, wp } from '../Theme';
 import RNStyles from './RNStyles';
 import RNText from './RNText';
 
-export default function RNRadio({ selected, text, onPress, containerStyle }) {
+export default function RNRadio({
+  selected,
+  text,
+  onPress,
+  containerStyle,
+  textStyle,
+}) {
   return (
     <TouchableOpacity
       activeOpacity={0.6}
@@ -12,7 +18,7 @@ export default function RNRadio({ selected, text, onPress, containerStyle }) {
       <View style={styles.radioContainer}>
         {selected && <View style={styles.selected} />}
       </View>
-      <RNText style={styles.text}>{text}</RNText>
+      <RNText style={[styles.text, textStyle]}>{text}</RNText>
     </TouchableOpacity>
   );
 }

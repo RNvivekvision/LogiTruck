@@ -104,8 +104,8 @@ const useStyles = () => {
       paddingBottom: inset.bottom,
     },
     profileContainer: {
-      width: size.icon * 1,
-      height: size.icon * 1,
+      width: size.icon,
+      height: size.icon,
       borderRadius: 100,
       overflow: 'hidden',
       borderWidth: wp(0.1),

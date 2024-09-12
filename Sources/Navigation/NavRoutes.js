@@ -22,7 +22,6 @@ const NavRoutes = {
   AddLicense: 'Add License',
   AddService: 'Add Service',
   AddBankDetails: 'Add Bank Details',
-  AboutUs: 'About Us',
   ContactUs: 'Contact Us',
   HelpFeedback: 'Help & Feedback',
 };

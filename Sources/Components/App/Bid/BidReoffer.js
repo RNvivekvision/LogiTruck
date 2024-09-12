@@ -19,13 +19,14 @@ export default function BidReoffer() {
   return (
     <View style={RNStyles.container}>
       <FlatList
-        data={Array.from({ length: 20 }).map((_, i) => dummyBid)}
+        data={Array.from({ length: 10 }).map((_, i) => dummyBid)}
         keyExtractor={(v, i) => String(i)}
         refreshControl={
           <RefreshControl
             refreshing={State.refresh}
             onRefresh={onRefresh}
             tintColor={Colors.primary}
+            colors={[Colors.primary]}
           />
         }
         contentContainerStyle={{ paddingVertical: 10 }}

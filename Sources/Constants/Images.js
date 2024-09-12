@@ -27,6 +27,12 @@ const Images = {
   drawer_10: require(imagePath + 'drawer_10' + png),
   camera: require(imagePath + 'camera' + png),
   gallery: require(imagePath + 'gallery' + png),
+  calendar: require(imagePath + 'calendar' + png),
+  upload: require(imagePath + 'upload' + png),
+  status_0: require(imagePath + 'status_0' + png),
+  status_1: require(imagePath + 'status_1' + png),
+  status_2: require(imagePath + 'status_2' + png),
+  status_3: require(imagePath + 'status_3' + png),
 
   // Dummy images should be deleted....
   dummyTruck: require(imagePath + 'dummyTruck' + png),

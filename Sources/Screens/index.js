@@ -10,7 +10,6 @@ export {
   AddLicense,
   AddService,
   AddBankDetails,
-  AboutUs,
   ContactUs,
   HelpFeedback,
 } from './App';

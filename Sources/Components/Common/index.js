@@ -1,3 +1,4 @@
 import LOInput from './LOInput';
 import LOBid from './LOBid';
-export { LOInput, LOBid };
+import LOUpload from './LOUpload';
+export { LOInput, LOBid, LOUpload };

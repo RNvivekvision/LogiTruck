@@ -25,12 +25,12 @@ const Routes = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={NavConfigs.screenOptions}>
         {/* Auth */}
-        {/* <Stack.Screen name={NavRoutes.Login} component={Login} />
+        <Stack.Screen name={NavRoutes.Login} component={Login} />
         <Stack.Screen name={NavRoutes.Otp} component={Otp} />
         <Stack.Screen
           name={NavRoutes.RegistrationType}
           component={RegistrationType}
-        /> */}
+        />
 
         {/* App */}
         <Stack.Screen name={NavRoutes.Home} component={Drawer} />
@@ -43,7 +43,6 @@ const Routes = () => {
           name={NavRoutes.AddBankDetails}
           component={AddBankDetails}
         />
-        <Stack.Screen name={NavRoutes.AboutUs} component={AboutUs} />
         <Stack.Screen name={NavRoutes.ContactUs} component={ContactUs} />
         <Stack.Screen name={NavRoutes.HelpFeedback} component={HelpFeedback} />
       </Stack.Navigator>

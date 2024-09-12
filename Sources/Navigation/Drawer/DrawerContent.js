@@ -37,7 +37,7 @@ export default function DrawerContent({ navigation }) {
 
       <View style={RNStyles.container}>
         <View style={styles.logo}>
-          <RNImage source={Images.appIcon} style={{ borderRadius: wp(5) }} />
+          <RNImage source={Images.dummyUser} style={{ borderRadius: wp(5) }} />
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.listContainer}>
@@ -68,7 +68,7 @@ const useStyles = () => {
   const inset = useInset();
   return StyleSheet.create({
     logoBg: {
-      height: hp(18),
+      height: hp(17),
       paddingTop: inset.top + hp(2),
       backgroundColor: Colors.primary,
     },

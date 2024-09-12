@@ -76,9 +76,7 @@ export default function TabBar({ state, descriptors, navigation }) {
                 resizeMode={'contain'}
                 style={[
                   styles.icons,
-                  {
-                    tintColor: isFocused ? Colors.white : Colors.white + '75',
-                  },
+                  { tintColor: isFocused ? Colors.white : Colors.white + '75' },
                 ]}
               />
               <RNText
@@ -104,8 +102,7 @@ const useStyles = () => {
       position: 'absolute',
       width: size.icon * 2.4,
       height: size.icon * 2.5,
-      zIndex: 1,
-      bottom: bottom + hp(0),
+      bottom: bottom,
       borderRadius: wp(2),
     },
     container: {

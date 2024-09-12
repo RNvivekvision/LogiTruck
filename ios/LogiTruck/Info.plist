@@ -31,8 +31,12 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<key>NSCameraUsageDescription</key>
+	<string>LogiTruck needs access to your camera to take photos of goods and services.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>LogiTruck needs access to your microphone for recording audio notes related to transportation details.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>LogiTruck needs access to your photo library to upload and share images of goods.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-Black.ttf</string>
